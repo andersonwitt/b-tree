@@ -8,8 +8,8 @@ class BTreeNode {
 
 class BTree {
   constructor(t, maxKeys) {
-    this.t = t; // Minimum degree
-    this.maxKeys = maxKeys; // Maximum number of keys per node
+    this.t = t;
+    this.maxKeys = maxKeys; 
     this.root = new BTreeNode(true);
   }
 
@@ -31,7 +31,6 @@ class BTree {
         i--;
       }
       if (i >= 0 && node.keys[i] === key) {
-        // Duplicate key found, do not insert
         return;
       }
       node.keys[i + 1] = key;
@@ -40,7 +39,6 @@ class BTree {
         i--;
       }
       if (i >= 0 && node.keys[i] === key) {
-        // Duplicate key found, do not insert
         return;
       }
       i++;

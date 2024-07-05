@@ -4,20 +4,24 @@ import "../index.css";
 
 const BTreeNodeComponent = ({ node }) => {
   return (
-    <div className="btree-node">
-      <div className="keys">
-        {node?.keys?.map((key, index) => (
-          <span key={index} className="key">
-            {key}
-          </span>
-        ))}
-      </div>
-      <div className="children">
-        {node?.children?.map((child, index) => (
-          <BTreeNodeComponent key={index} node={child} />
-        ))}
-      </div>
-    </div>
+    <>
+      {!!node?.keys?.length && (
+        <div className="btree-node">
+          <div className="keys">
+            {node?.keys?.map((key, index) => (
+              <span key={index} className="key">
+                {key}
+              </span>
+            ))}
+          </div>
+          <div className="children">
+            {node?.children?.map((child, index) => (
+              <BTreeNodeComponent key={index} node={child} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -43,13 +47,16 @@ const BTreeComponent = ({ btree }) => {
 
   return (
     <div className="btree-container">
-      <input
-        type="number"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button onClick={handleInsert}>Insert</button>
-      <button onClick={handleRemove}>Remove</button>
+      <div className="btree-fields">
+        <input
+          placeholder="Valor"
+          type="number"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button onClick={handleInsert}>Inserir</button>
+        <button onClick={handleRemove}>Remover</button>
+      </div>
       <div className="btree">
         <BTreeNodeComponent node={tree.root} />
       </div>
